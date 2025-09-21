@@ -1,0 +1,3541 @@
+<?php
+// إزالة معالجة النموذج القديم من هذا الملف
+// سنعتمد على AJAX فقط للاتصال بـ send_emaul.php
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> جي ماين- حلول تكنولوجية</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="alternate" hreflang="ar" href="https://yourdomain.com/Ar.php" />
+<link rel="alternate" hreflang="en" href="https://yourdomain.com/index.php" />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <script src="assets/js/language-switcher.js"></script>
+  
+
+<link rel="icon" href="data:image/svg+xml;utf8,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+  <defs>
+    <linearGradient id='grad3d' x1='0%' y1='0%' x2='0%' y2='100%'>
+      <stop offset='0%' stop-color='%2334d058'/>
+      <stop offset='100%' stop-color='%2327ae60'/>
+    </linearGradient>
+    <filter id='shadow' x='-20%' y='-20%' width='140%' height='140%'>
+      <feDropShadow dx='2' dy='2' stdDeviation='3' flood-color='%23000' flood-opacity='0.3'/>
+    </filter>
+  </defs>
+  <circle cx='50' cy='50' r='45' fill='url(%23grad3d)' filter='url(%23shadow)'/>
+  <text x='50' y='68' font-size='52' font-family='Arial, Helvetica, sans-serif' font-weight='bold' fill='white' text-anchor='middle' filter='url(%23shadow)'>G</text>
+</svg>">
+
+  <link rel="stylesheet" href="assets/css/Ar.css">
+  <style>
+
+        
+        /* تحسينات التصميم للشريحة */
+        .swiper-pagination {
+            bottom: 30px !important;
+        }
+        
+        .swiper-pagination-bullet {
+            width: 12px;
+            height: 12px;
+            background: white;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: #11A7A5;
+            transform: scale(1.3);
+        }
+        
+     
+        /* تصميم متجاوب */
+        @media (max-width: 768px) {
+            .slide-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide-content p {
+                font-size: 1.2rem;
+            }
+            
+            .btn-hero {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .slide-content h1 {
+                font-size: 2rem;
+            }
+            
+            .slide-content p {
+                font-size: 1rem;
+            }
+            
+            .btn-hero {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .swiper-pagination {
+                bottom: 20px !important;
+            }
+        }
+    /* Contact section styles */
+    .contact-section {
+      padding: 80px 0;
+      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-form {
+      background: white;
+      padding: 3rem;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.03);
+      transform: translateY(0);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .contact-form:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      position: relative;
+      margin-bottom: 2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #1e293b;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 50px;
+      font-size: 1rem;
+      background: #f8fafc;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+      background: white;
+      transform: scale(1.01);
+    }
+
+    .form-control::placeholder {
+      color: #94a3b8;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .form-control:focus::placeholder {
+      opacity: 0.5;
+    }
+
+    textarea.form-control {
+      min-height: 200px;
+      resize: vertical;
+      border-radius: 15px;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      letter-spacing: 0.5px;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-submit::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn-submit:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      animation: pulse 2s infinite;
+    }
+
+    .back-to-top:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+    }
+
+    .back-to-top:active {
+      transform: scale(1);
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-form {
+        padding: 2rem;
+      }
+      .back-to-top {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+        bottom: 20px;
+        left: 20px;
+      }
+    }
+
+    .team-section .team-social .social-link {
+      background: var(--primary) !important;
+      color: white !important;
+      box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+    }
+
+    .team-section .team-social .social-link:hover {
+      background: var(--dark) !important;
+      color: white !important;
+    }
+
+    /* SweetAlert2 custom styles */
+    .animated-swal {
+      border-radius: 20px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+    }
+    .swal-title {
+      font-size: 1.5rem;
+      color: #333;
+      font-weight: 700;
+    }
+    .swal-text {
+      font-size: 1rem;
+      color: #555;
+    }
+    .swal-button {
+      border-radius: 25px;
+      padding: 10px 30px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .swal-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* تحسينات للتحقق من الصحة */
+    .was-validated .form-control:valid {
+      border-color: #10b981;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2310b981' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    }
+
+    .was-validated .form-control:invalid {
+      border-color: #dc3545;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 3.6.4.4.4-.4'/%3e%3cpath d='M6 7v2.5'/%3e%3c/svg%3e");
+    }
+
+    .invalid-feedback {
+      display: none;
+      width: 100%;
+      margin-top: 0.25rem;
+      font-size: 0.875em;
+      color: #dc3545;
+      text-align: right;
+    }
+
+    .was-validated .form-control:invalid ~ .invalid-feedback {
+      display: block;
+    }
+
+    /* أنماط زر تبديل اللغة */
+.language-toggle {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.language-toggle:hover {
+    transform: scale(1.05);
+    border-color: #10b981;
+}
+
+.language-toggle:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+}
+
+/* أنماط للنسخة العربية */
+[dir="rtl"] .language-toggle {
+    margin-left: 0;
+    margin-right: 1rem;
+}
+
+/* تحسين للهواتف */
+@media (max-width: 768px) {
+    .language-toggle {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .mobile-language-item {
+        display: block !important;
+        text-align: center;
+        padding: 1rem;
+        border-top: 1px solid #e5e7eb;
+    }
+}
+
+        
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .case-study-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .case-study-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .case-study-image {
+            height: 220px;
+            overflow: hidden;
+        }
+        
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .case-study-card:hover .case-study-image img {
+            transform: scale(1.05);
+        }
+        
+        .case-study-content {
+            padding: 25px;
+        }
+        
+        .case-study-content h3 {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .case-study-content p {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .tech-tag {
+            background-color: #e8f5e9;
+            color: #2c3e50;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .case-study-btn {
+            display: inline-block;
+            background-color: #10b981;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .case-study-btn:hover {
+            background-color: #0d9669;
+        }
+        
+        @media (max-width: 768px) {
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+            * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Amiri', serif;
+    }
+
+    :root {
+      --primary: #10b981;
+      --secondary: #34d399;
+      --accent: #06b6d4;
+      --dark: #151a30;
+      --light: #f8faff;
+      --text: #334155;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      --soothing-bg: rgba(240, 253, 244, 0.95);
+    }
+
+    body {
+      color: var(--text);
+      overflow-x: hidden;
+      background: var(--light);
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 4%;
+      z-index: 1000;
+      background: transparent;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      position: fixed;
+      background: #F4FBFD;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      padding: 0.8rem 4%;
+    }
+
+    .navbar.scrolled .logo {
+      color: var(--dark);
+    }
+
+    .navbar.scrolled .logo-icon {
+      color: var(--primary);
+    }
+
+    .navbar.scrolled .nav-links a {
+      color: var(--dark);
+    }
+
+    @media (max-width: 992px) {
+      .navbar.scrolled .nav-links a {
+        color: #ffffff;
+      }
+    }
+
+    .navbar.scrolled .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .navbar.scrolled .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .navbar.scrolled .btn-nav {
+      color: var(--dark);
+    }
+
+    .navbar.scrolled .btn-login {
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar.scrolled .btn-login:hover {
+      color: white;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .navbar.scrolled .menu-toggle span {
+      background: var(--dark);
+    }
+
+    .navbar.scrolled .menu-toggle span {
+      background: var(--dark);
+    }
+
+    @media (max-width: 992px) {
+      .navbar.scrolled .menu-toggle.active span {
+        background: #ffffff;
+      }
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .logo-g {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo-icon::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      opacity: 0.5;
+      transition: var(--transition);
+    }
+
+    .logo-icon::after {
+      content: '';
+      position: absolute;
+      width: 110%;
+      height: 110%;
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      opacity: 0.3;
+      transition: var(--transition);
+    }
+
+    .logo:hover .logo-icon {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    .logo:hover .logo-icon::before {
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+
+    .logo:hover .logo-icon::after {
+      opacity: 0.5;
+      transform: scale(1.2);
+    }
+
+    .logo-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 1.8rem;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      background: var(--primary);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 60%;
+    }
+
+    .nav-links a.active {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-nav {
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+      z-index: -1;
+      border-radius: 25px;
+    }
+
+    .btn-nav:hover::before {
+      width: 100%;
+    }
+
+    .btn-login {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-login:hover {
+      border-color: var(--primary);
+    }
+
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      background: transparent;
+    }
+
+    .language-toggle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+      z-index: -1;
+      border-radius: 25px;
+    }
+
+    .language-toggle:hover::before {
+      width: 100%;
+    }
+
+    .language-toggle:hover {
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .language-flag {
+      margin-left: 8px;
+      font-size: 1.2rem;
+    }
+
+    .navbar.scrolled .language-toggle {
+      color: var(--dark);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar.scrolled .language-toggle:hover {
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 32px;
+      height: 31px;
+      cursor: pointer;
+      z-index: 1001;
+      position: relative;
+      padding: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(6, 182, 212, 0.2));
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .menu-toggle:hover {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(6, 182, 212, 0.4));
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(90deg, #10b981, #06b6d4);
+      border-radius: 5px;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      transform-origin: center;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(7px, 7px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+      transform: scale(0);
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .menu-toggle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(16, 185, 129, 0.3);
+      border-radius: 50%;
+      transform: translate(50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      z-index: -1;
+    }
+
+    .menu-toggle:active::before {
+      width: 60px;
+      height: 60px;
+      opacity: 0;
+    }
+
+    /* زر اللغة في القائمة المنزلقة للهاتف */
+    .mobile-language-toggle {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      background: transparent;
+      margin: 2rem auto;
+      width: 80%;
+      max-width: 250px;
+    }
+
+    .mobile-language-toggle::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: var(--primary);
+      transition: var(--transition);
+      z-index: -1;
+      border-radius: 25px;
+    }
+
+    .mobile-language-toggle:hover::before {
+      width: 100%;
+    }
+
+    .mobile-language-toggle:hover {
+      border-color: var(--primary);
+      color: white;
+    }
+
+    .mobile-language-flag {
+      margin-left: 10px;
+      font-size: 1.4rem;
+    }
+
+    @media (max-width: 992px) {
+      .menu-toggle {
+        display: flex;
+      }
+      
+      .navbar.scrolled .menu-toggle span {
+        background: linear-gradient(90deg, #10b981, #06b6d4);
+      }
+
+      .navbar.scrolled .menu-toggle.active span {
+        background: #ffffff;
+      }
+
+      /* إظهار زر اللغة في القائمة المنزلقة وإخفاء الزر الأصلي */
+      .nav-actions {
+        display: none;
+      }
+      
+      .mobile-language-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(21, 26, 48, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+      }
+      @media (max-width: 992px) {
+  .mobile-language-item {
+    display: block !important;
+  }
+}
+
+      .nav-links.active {
+        left: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-actions {
+        display: none;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .logo-icon {
+        font-size: 1.6rem;
+      }
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-3px); }
+      50% { transform: translateX(3px); }
+      75% { transform: translateX(-3px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide-bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.8);
+      transition: transform 1.2s ease;
+    }
+
+    .swiper-slide-active .slide-bg {
+      transform: scale(1.1);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      color: white;
+      text-align: center;
+      max-width: 800px;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+
+    .swiper-slide-active .slide-content {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-content h1 {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .slide-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      padding: 1.2rem 3rem;
+      background: var(--primary);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 0;
+      height: 100%;
+      background: var(--secondary);
+      transition: var(--transition);
+      z-index: -1;
+      border-radius: 50px;
+    }
+
+    .btn-hero:hover::before {
+      width: 100%;
+    }
+
+    .btn-hero:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+    }
+
+  
+
+    .swiper-button-next, .swiper-button-prev {
+      color: white;
+      transition: var(--transition);
+      opacity: 0.7;
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      backdrop-filter: blur(5px);
+    }
+
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      opacity: 1;
+      transform: scale(1.2);
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Legendary Content Section Design */
+    .content-section {
+      padding: 6rem 2rem;
+      background: linear-gradient(135deg, var(--light), #ecfdf5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      animation: pulse 10s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.1); opacity: 0.3; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title h2 {
+      font-size: 2.8rem;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .section-title h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .section-title p {
+      color: #666;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 3rem 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      animation: fadeInUp 1s ease;
+      animation-delay: calc(0.1s * var(--order));
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 0;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .feature-card:hover::before {
+      height: 100%;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+    }
+
+    .feature-card:hover .feature-icon,
+    .feature-card:hover h3,
+    .feature-card:hover p {
+      color: white;
+    }
+
+    .feature-icon {
+      font-size: 3.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      transition: var(--transition);
+      transform: rotate(0deg);
+    }
+
+    .feature-card:hover .feature-icon {
+      transform: rotate(360deg);
+    }
+
+    .feature-card h3 {
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+      font-size: 1.5rem;
+      transition: var(--transition);
+    }
+
+    .feature-card p {
+      color: var(--text);
+      transition: var(--transition);
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* أنماط قسم من نحن مع تحسينات الاستجابة */
+    .about-section {
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, #f8faff 0%, #f0fdfa 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-section::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .about-section::after {
+      content: '';
+      position: absolute;
+      bottom: -50px;
+      left: -50px;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about-image {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .about-image:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .about-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .about-content {
+      width: 100%;
+    }
+
+    .about-content h2 {
+      font-size: 2rem;
+      color: #151a30;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+      font-size: 1rem;
+      color: #334155;
+      text-align: justify;
+    }
+
+    .about-highlights {
+      margin: 1.8rem 0;
+    }
+
+    .highlight-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.2rem;
+    }
+
+    .highlight-icon {
+      width: 36px;
+      height: 36px;
+      background: #10b981;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 0.9rem;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 1.2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(16, 185, 129, 0.15);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #10b981;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .stat-text {
+      font-size: 0.9rem;
+      color: #334155;
+    }
+
+    /* وسائط استعلامية للشاشات المتوسطة */
+    @media (min-width: 768px) {
+      .about-section {
+        padding: 5rem 2rem;
+      }
+      
+      .about-section::before {
+        top: -80px;
+        right: -80px;
+        width: 250px;
+        height: 250px;
+      }
+      
+      .about-section::after {
+        bottom: -80px;
+        left: -80px;
+        width: 300px;
+        height: 300px;
+      }
+      
+      .about-content h2 {
+        font-size: 2.2rem;
+        text-align: right;
+      }
+      
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* وسائط استعلامية للشاشات الكبيرة */
+    @media (min-width: 992px) {
+      .about-section {
+        padding: 6rem 4%;
+      }
+      
+      .about-section::before {
+        top: -100px;
+        right: -100px;
+        width: 300px;
+        height: 300px;
+      }
+      
+      .about-section::after {
+        bottom: -100px;
+        left: -100px;
+        width: 400px;
+        height: 400px;
+      }
+      
+      .about-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      
+      .about-content h2 {
+        font-size: 2.5rem;
+      }
+      
+      .about-content p {
+        font-size: 1.1rem;
+      }
+      
+      .stat-number {
+        font-size: 2.2rem;
+      }
+    }
+
+    /* وسائط استعلامية للشاشات الصغيرة جدًا */
+    @media (max-width: 480px) {
+      .about-section {
+        padding: 3rem 1rem;
+      }
+      
+      .about-content h2 {
+        font-size: 1.8rem;
+      }
+      
+      .highlight-item {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: right;
+        margin-bottom: 1.5rem;
+      }
+      
+      .highlight-icon {
+        margin-left: 0.9rem;
+        margin-bottom: 0;
+        margin-top: 0.5rem;
+      }
+      
+      .highlight-item p {
+        margin-top: 0.5rem;
+        line-height: 1.5;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(21, 26, 48, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition: var(--transition);
+        backdrop-filter: blur(10px);
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.2rem;
+      }
+
+      .slide-content h1 {
+        font-size: 3rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-actions {
+        display: none;
+      }
+
+      .slide-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .slide-content p {
+        font-size: 1.1rem;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+      }
+
+      .logo-icon {
+        font-size: 1.6rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+    }
+     .contact-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #e0f7fa 0%, #f0f4ff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent 70%);
+    z-index: 0;
+    animation: float 10s infinite ease-in-out;
+  }
+
+  .contact-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+    z-index: 0;
+    animation: float 12s infinite ease-in-out reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .contact-container {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-form {
+    background: white;
+    padding: 3rem;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    transform: translateY(0);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  .contact-form:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #1e293b;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 50px;
+    font-size: 1rem;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    text-align: right;
+    direction: rtl;
+  }
+
+  .form-control:focus {
+    outline: none;
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.15);
+    background: white;
+    transform: scale(1.01);
+  }
+
+  .form-control::placeholder {
+    color: #94a3b8;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    text-align: right;
+  }
+
+  .form-control:focus::placeholder {
+    opacity: 0.5;
+  }
+
+  textarea.form-control {
+    min-height: 200px;
+    resize: vertical;
+    border-radius: 15px;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-submit::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+  }
+
+  .btn-submit:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  .btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  }
+
+  .btn-submit:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .contact-form {
+      padding: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+  }
+
+  
+  .team-section .team-social .social-link {
+  background: #d1d5db !important; /* Light gray background */
+  color: #10b981 !important; /* Green icon color */
+}
+
+/* الحل المعدل */
+.team-section .team-social .social-link {
+  background: var(--primary) !important; /* خلفية ملونة */
+  color: white !important; /* لون أيقونة أبيض */
+  box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+}
+
+.team-section .team-social .social-link:hover {
+  background: var(--dark) !important; /* لون أغمق عند التحويم */
+  color: white !important;
+}
+
+
+
+     .team-section {
+      padding: 6rem 0;
+      background: linear-gradient(135deg, #f0fdfa 0%, #f8faff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-slider {
+      margin-top: 3rem;
+      position: relative;
+      padding: 2rem 0;
+    }
+
+    .team-card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      height: 100%;
+      margin: 1rem;
+    }
+
+    .team-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .team-image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    .team-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .team-card:hover .team-image img {
+      transform: scale(1.05);
+    }
+
+    .team-content {
+      padding: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .team-content::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 60px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+    }
+
+    .team-name {
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin: 1rem 0 0.5rem;
+      font-weight: 700;
+    }
+
+    .team-role {
+      color: var(--primary);
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .team-skills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--primary);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .skill-tag:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .team-social {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+      color: white;
+      transform: translateY(-3px) scale(1.1);
+    }
+
+    .team-slider .swiper-pagination {
+      position: relative;
+      bottom: 0;
+      margin-top: 2rem;
+    }
+
+    .team-slider .swiper-pagination-bullet {
+      background: var(--text);
+      opacity: 0.5;
+      width: 12px;
+      height: 12px;
+      transition: var(--transition);
+    }
+
+    .team-slider .swiper-pagination-bullet-active {
+      background: var(--primary);
+      opacity: 1;
+      transform: scale(1.3);
+    }
+
+    .swiper-button-next, .swiper-button-prev {
+      color: var(--primary);
+      background: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: var(--primary);
+      color: white;
+      transform: scale(1.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .team-image {
+        height: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .section-title h2 {
+        font-size: 2.2rem;
+      }
+
+      .team-image {
+        height: 220px;
+      }
+
+      .team-content {
+        padding: 1.5rem;
+      }
+      
+      .team-name {
+        font-size: 1.3rem;
+      }
+      
+      .swiper-button-next, .swiper-button-prev {
+        display: none;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .team-image {
+        height: 200px;
+      }
+      
+      .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+      }
+      
+      .social-link {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    .technologies-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f0fdfa 0%, #f8faff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .technologies-section::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    right: -120px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.25), transparent 70%);
+    z-index: 0;
+    animation: pulse 15s infinite ease-in-out;
+  }
+
+  .technologies-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.25), transparent 70%);
+    z-index: 0;
+    animation: pulse 18s infinite ease-in-out reverse;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+  }
+
+  .technologies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tech-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #10b981, #06b6d4);
+    z-index: 1;
+  }
+
+  .tech-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
+  }
+
+  .tech-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+    color: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2.5rem;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .tech-card:hover .tech-icon {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    color: white;
+    transform: rotate(360deg) scale(1.1);
+  }
+
+  .tech-card h3 {
+    color: #1e293b;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .tech-card p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .technologies-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tech-card {
+      padding: 1.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .tech-icon {
+      width: 60px;
+      height: 60px;
+      font-size: 2rem;
+    }
+  }
+
+  .case-studies-section {
+    padding: 6rem 0;
+    background: linear-gradient(135deg, #f0fdfa 0%, #f8faff 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-studies-section::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.2), transparent 70%);
+    z-index: 0;
+    animation: float 12s infinite ease-in-out;
+  }
+
+  .case-studies-section::after {
+    content: '';
+    position: absolute;
+    bottom: -120px;
+    left: -120px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.2), transparent 70%);
+    z-index: 0;
+    animation: float 15s infinite ease-in-out reverse;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); opacity: 0.7; }
+    50% { transform: translateY(-20px); opacity: 0.4; }
+  }
+
+  .case-studies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .case-study-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+  }
+
+  .case-study-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
+  }
+
+  .case-study-image {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+  }
+
+  .case-study-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.4s ease;
+  }
+
+  .case-study-card:hover .case-study-image img {
+    transform: scale(1.05);
+  }
+
+  .case-study-content {
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .case-study-content h3 {
+    color: #1e293b;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .case-study-content p {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .case-study-link {
+    display: inline-flex;
+    align-items: center;
+    color: #10b981;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    background: rgba(16, 185, 129, 0.1);
+  }
+
+  .case-study-link:hover {
+    color: white;
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    transform: translateX(-5px);
+  }
+
+  .case-study-link i {
+    margin-right: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .case-studies-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .case-study-card {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .case-study-image {
+      height: 180px;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .case-study-content {
+      padding: 1.2rem;
+    }
+
+    .case-study-content h3 {
+      font-size: 1.3rem;
+    }
+  }
+
+  
+
+    .footer-section {
+    padding: 4rem 0 2rem;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: #f8fafc;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-section::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.3), transparent 70%);
+    z-index: 0;
+    animation: wave 14s infinite ease-in-out;
+  }
+
+  .footer-section::after {
+    content: '';
+    position: absolute;
+    bottom: -150px;
+    left: -150px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.3), transparent 70%);
+    z-index: 0;
+    animation: wave 16s infinite ease-in-out reverse;
+  }
+
+  @keyframes wave {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+    50% { transform: translate(-10px, -10px) scale(1.1); opacity: 0.4; }
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 2rem;
+  }
+
+  .footer-about h3,
+  .footer-links h3,
+  .footer-contact h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: #10b981;
+  }
+
+  .footer-about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-bottom: 1.5rem;
+    max-width: 300px;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #f8fafc;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    font-size: 1.2rem;
+  }
+
+  .social-link:hover {
+    background: linear-gradient(135deg, #10b981, #06b6d4);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+  }
+
+  .footer-links ul,
+  .footer-contact ul {
+    list-style: none;
+  }
+
+  .footer-links li,
+  .footer-contact li {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-links a,
+  .footer-contact a {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .footer-links a:hover,
+  .footer-contact a:hover {
+    color: #10b981;
+    transform: translateX(-5px);
+    display: inline-block;
+  }
+
+  .footer-contact i {
+    margin-left: 0.5rem;
+    color: #10b981;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .footer-bottom p {
+    font-size: 0.9rem;
+    color: #94a3b8;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .footer-about p {
+      max-width: 100%;
+    }
+
+    .footer-social {
+      justify-content: center;
+    }
+
+    .footer-links ul,
+    .footer-contact ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .footer-section {
+      padding: 3rem 0 1.5rem;
+    }
+
+    .footer-about h3,
+    .footer-links h3,
+    .footer-contact h3 {
+      font-size: 1.3rem;
+    }
+
+    .social-link {
+      width: 35px;
+      height: 35px;
+      font-size: 1rem;
+    }
+  }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="#" class="logo" aria-label="G Mayne Homepage">
+      <div class="logo-icon">
+        <span class="logo-g">جي</span>
+      </div>
+      <span class="logo-text">ماين</span>
+    </a>
+
+    <ul class="nav-links" role="menubar">
+      <li role="none"><a href="#home" class="active" role="menuitem" aria-current="page">الرئيسية</a></li>
+      <li role="none"><a href="#about" role="menuitem">من نحن</a></li>
+      <li role="none"><a href="#solutions" role="menuitem">الحلول</a></li>
+      <li role="none"><a href="#contact" role="menuitem">اتصل بنا</a></li>
+      <li role="none"><a href="#team" role="menuitem">خبرتي</a></li>
+      <li role="none"><a href="#case-studies" role="menuitem">دراسات الحالة</a></li>
+      <li class="mobile-language-item" role="none" style="display: none;">
+        <button class="mobile-language-toggle" id="mobileLanguageToggle" aria-label="تبديل اللغة">
+          <span class="mobile-language-flag" id="mobileLanguageFlag">🇸🇦</span>
+          <span id="mobileLanguageText">العربية</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="nav-actions">
+  <button class="language-toggle" id="languageToggle" 
+        aria-label="التغيير إلى اللغة الإنجليزية" 
+        onclick="switchLanguage('en')">
+    <span class="language-flag" id="languageFlag">🇸🇦</span>
+    <span id="languageText">AR</span>
+</button>
+    </div>
+
+    <div class="menu-toggle" role="button" aria-label="تبديل القائمة" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </nav>
+
+  <section class="hero-section" id="home">
+    <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم عروض بوربوينت احترافية</h1>
+                    <p>أبرز موهبتك في تقديم العروض بعروض بوربوينت مذهلة ومصممة بشكل احترافي تنقل رسالتك بفعالية.</p>
+                    <a href="#contact" class="btn-hero" >اطلب تصميمك الآن <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1632&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم وتطوير قواعد البيانات</h1>
+                    <p>أنشئ قواعد بيانات متكاملة ومحكمة تلبي احتياجات مشاريعك باحترافية عالية وكفاءة ممتازة.</p>
+                    <a href="#" class="btn-hero" onclick="showComingSoon(event)">اطلب قاعدة البيانات <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم واجهات المستخدم وتجربة المستخدم</h1>
+                    <p>صمم واجهات مستخدم جذابة وسهلة الاستخدام تعزز تجربة المستخدم وتزيد من تفاعله مع تطبيقك.</p>
+                    <a href="#contact" class="btn-hero" >اطلب التصميم <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1517430816045-df4b7de11d1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تطوير تطبيقات ويب ومواقع إلكترونية</h1>
+                    <p>أنشئ تطبيقات ويب ومواقع إلكترونية متكاملة وسريعة الاستجابة تلبي جميع احتياجاتك التقنية.</p>
+                    <a href="#contact" class="btn-hero" >اطلب التطبيق</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1440&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم منصات تعليمية وتدريبية</h1>
+                    <p>أنشئ منصات تعليمية متكاملة توفر تجربة تعلم فريدة وسهلة للطلاب والمتدربين.</p>
+                    <a href="#contact" class="btn-hero" >اطلب المنصة</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');"></div>
+                <div class="slide-content">
+                    <h1>إنجاز مذكرات التخرج والبحوث</h1>
+                    <p>احصل على مساعدة متخصصة في إنجاز مذكرات التخرج والبحوث العلمية بجودة عالية ودقة متناهية.</p>
+                    <a href="#contact" class="btn-hero" >اطلب الخدمة <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1465&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تقديم حلول تقنية مبتكرة</h1>
+                    <p>طور مشاريعك بحلول تقنية مبتكرة ومخصصة تلبي متطلباتك وتواكب أحدث التطورات التكنولوجية.</p>
+                    <a href="#contact" class="btn-hero">اطلب الحل</a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1472&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم تجارب واقع افتراضي ومعزز</h1>
+                    <p>أنشئ تجارب غامرة باستخدام تقنيات الواقع الافتراضي والمعزز التي تنقل مستخدميك إلى عوالم جديدة.</p>
+                    <a href="#contact" class="btn-hero" >صمم تجربتك <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تطوير تطبيقات الجوال</h1>
+                    <p>صمم وطور تطبيقات جوال مبتكرة وسهلة الاستخدام لنظامي Android و iOS تلبي احتياجات مستخدميك.</p>
+                    <a href="#contact" class="btn-hero" >اطلب التطبيق <i class="fas fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="slide-bg" style="background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+                <div class="slide-content">
+                    <h1>تصميم هوية بصرية وشعارات</h1>
+                    <p>صمم هوية بصرية مميزة وشعارات إبداعية تعبر عن علامتك التجارية وتجذب انتباه عملائك.</p>
+                    <a href="#contact" class="btn-hero" >اطلب التصميم</a>
+                </div>
+            </div>
+        </div>
+        <!-- عناصر الترقيم وأزرار التنقل -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+</section>
+<section class="about-section" id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>من أنا</h2>
+        <p>تعرف على المسيرة والخبرة في عالم التكنولوجيا</p>
+      </div>
+      
+      <div class="about-container">
+        <div class="about-image">
+    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="فريق تقني 7" class="card-img">
+        </div>
+        
+        <div class="about-content">
+          <h2>مرحبًا، أنا <span style="color: #10b981;">عبد المؤمن بوساق</span></h2>
+          <p>أنا خبير تكنولوجيا ومبتكر متحمس مع أكثر من 5 سنوات من الخبرة في إنشاء حلول رقمية مبتكرة للشركات من جميع الأحجام.</p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <i class="fas fa-lightbulb"></i>
+              </div>
+              <p>مبتكر حلول تكنولوجية مبتكرة وسهلة الاستخدام</p>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <p>أتخصص في تحويل الأفكار إلى واقع باستخدام أحدث التقنيات</p>
+            </div>
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <i class="fas fa-handshake"></i>
+              </div>
+              <p>أبني شراكات طويلة الأمد مع العملاء</p>
+            </div>
+          </div>
+          
+          <p>أؤمن بأن التكنولوجيا يجب أن تمكن الشركات من تحقيق أهدافها بكفاءة أكبر. مهمتي هي تقديم حلول متطورة تدفع النمو والابتكار.</p>
+          
+          <div class="about-stats">
+            <div class="stat-item">
+              <span class="stat-number">5+</span>
+              <span class="stat-text">سنوات من الخبرة</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">25+</span>
+              <span class="stat-text">مشروع مكتمل</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">96%</span>
+              <span class="stat-text">رضا العملاء</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <section class="content-section" id="solutions">
+    <div class="container">
+      <div class="section-title">
+        <h2>لماذا تختار عبد المؤمن بوساق</h2>
+        <p>أقدم قيمة استثنائية من خلال الابتكار والجودة والالتزام غير المشروط بنجاح عملائي.</p>
+      </div>
+      
+      <div class="features">
+        <div class="feature-card" style="--order: 1;">
+          <div class="feature-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>حلول مدعومة بالذكاء الاصطناعي</h3>
+          <p>استفد من قوة الذكاء الاصطناعي لتحسين العمليات ودفع الابتكار في مشاريعك.</p>
+        </div>
+        
+        <div class="feature-card" style="--order: 2;">
+          <div class="feature-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>تطوير التطبيقات والمنصات</h3>
+          <p>تصميم وتطوير تطبيقات ويب ومنصات رقمية متكاملة تلبي احتياجات عملك.</p>
+        </div>
+        
+        <div class="feature-card" style="--order: 3;">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>الأمن على مستوى المؤسسة</h3>
+          <p>حلول أمنية شاملة لحماية بياناتك وأصولك الرقمية من التهديدات.</p>
+        </div>
+        
+        <div class="feature-card" style="--order: 4;">
+          <div class="feature-icon">
+            <i class="fas fa-file-powerpoint"></i>
+          </div>
+          <h3>عروض بوربوينت احترافية</h3>
+          <p>تصميم عروض تقديمية تفاعلية ومهنية تعزز عروضك واجتماعاتك المهمة.</p>
+        </div>
+        
+        <div class="feature-card" style="--order: 5;">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>تطوير الويب والجوال</h3>
+          <p>بناء تطبيقات ويب سريعة الاستجابة وتطبيقات جوال متعددة المنصات بتقنيات متطورة.</p>
+        </div>
+        
+        <div class="feature-card" style="--order: 6;">
+          <div class="feature-icon">
+            <i class="fas fa-database"></i>
+          </div>
+          <h3>تصميم قواعد البيانات</h3>
+          <p>تطوير قواعد بيانات فعالة وآمنة تدعم تطبيقاتك وتضمن سلامة بياناتك.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="section-title text-center">
+      <h2>اتصل بنا</h2>
+      <p>هل لديك فكرة مشروع أو تحتاج إلى مساعدة لعملك؟ دعنا نتواصل!</p>
+    </div>
+    <form id="contactForm" class="contact-form needs-validation" novalidate action="https://formspree.io/f/mzzanwoy" method="POST" dir="rtl">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">اسمك</label>
+          <input type="text" class="form-control" id="name" name="name" pattern="[\p{Arabic}a-zA-Z\s\-']+" placeholder="أدخل اسمك" required>
+          <div class="invalid-feedback">يرجى إدخال اسم صالح (حروف عربية أو إنجليزية، مسافات، شرطات، أو علامات تنصيص فقط)</div>
+        </div>
+        <div class="form-group">
+          <label for="email">البريد الإلكتروني</label>
+          <input type="email" class="form-control" id="email" name="_replyto" placeholder="أدخل بريدك الإلكتروني" required>
+          <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صالح</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="subject">الموضوع</label>
+        <input type="text" class="form-control" id="subject" name="_subject" placeholder="أدخل الموضوع" required>
+        <div class="invalid-feedback">يرجى إدخال موضوع</div>
+      </div>
+      <div class="form-group">
+        <label for="message">رسالتك</label>
+        <textarea class="form-control" id="message" name="message" placeholder="اكتب رسالتك هنا" required></textarea>
+        <div class="invalid-feedback">يرجى إدخال رسالتك</div>
+      </div>
+      <button type="submit" class="btn-submit" id="submitBtn">
+        <i class="fas fa-paper-plane me-2"></i>إرسال الرسالة
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="team-section" id="team">
+    <div class="container">
+      <div class="section-title">
+        <h2>مجالات تخصصي</h2>
+        <p>اكتشف المجالات التقنية التي أتميز فيها وأقدم فيها حلولاً مبتكرة</p>
+      </div>
+      
+      <div class="team-slider">
+        <div class="swiper team-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=715&q=80" alt="تطوير تطبيقات الويب">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">تطوير تطبيقات الويب</h3>
+                  <span class="team-role">تصميم وتطوير متكامل</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Node.js</span>
+                  </div>
+                  <p>بناء تطبيقات ويب حديثة وسريعة الاستجابة بتقنيات متطورة.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="تطوير المنصات الرقمية">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">تطوير المنصات الرقمية</h3>
+                  <span class="team-role">منصات متكاملة</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">Laravel</span>
+                    <span class="skill-tag">Django</span>
+                    <span class="skill-tag">MySQL</span>
+                  </div>
+                  <p>تصميم منصات رقمية متكاملة تلبي احتياجات العمل المختلفة.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="العروض التقديمية الاحترافية">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">العروض التقديمية</h3>
+                  <span class="team-role">تصميم احترافي</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">PowerPoint</span>
+                    <span class="skill-tag">تصميم جرافيك</span>
+                    <span class="skill-tag">الرسوم المتحركة</span>
+                  </div>
+                  <p>إنشاء عروض تقديمية تفاعلية ومهنية تعزز عروضك واجتماعاتك.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="قواعد البيانات">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">قواعد البيانات</h3>
+                  <span class="team-role">تصميم وإدارة</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">PostgreSQL</span>
+                  </div>
+                  <p>تصميم قواعد بيانات فعالة وآمنة تدعم تطبيقاتك المختلفة.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="مذكرات التخرج">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">مذكرات التخرج</h3>
+                  <span class="team-role">تصميم أكاديمي متكامل</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">البحث العلمي</span>
+                    <span class="skill-tag">التنسيق الأكاديمي</span>
+                    <span class="skill-tag">المنهجية العلمية</span>
+                  </div>
+                  <p>إنشاء مذكرات تخرج احترافية وفق المعايير الأكاديمية العالمية.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="swiper-slide">
+              <div class="team-card">
+                <div class="team-image">
+                  <img src="https://images.unsplash.com/photo-1563207153-f403bf289096?ixlib=rb-4.0.3&auto=format&fit=crop&w=1171&q=80" alt="الحلول الرقمية">
+                </div>
+                <div class="team-content">
+                  <h3 class="team-name">الحلول الرقمية</h3>
+                  <span class="team-role">ابتكار وتطوير</span>
+                  <div class="team-skills">
+                    <span class="skill-tag">التحول الرقمي</span>
+                    <span class="skill-tag">أتمتة العمليات</span>
+                    <span class="skill-tag">حلول مخصصة</span>
+                  </div>
+                  <p>تقديم حلول رقمية شاملة تساعد في تحويل عملك إلى العالم الرقمي.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <section class="case-studies-section" id="case-studies">
+        <div class="container">
+            <div class="section-title">
+                <h2>المشاريع التقنية</h2>
+                <p>اكتشف كيف يمكنني مساعدتك في تنفيذ مشاريعك التقنية بنجاح.</p>
+            </div>
+            
+            <div class="case-studies-grid">
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="منصة تجارة إلكترونية">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>منصات التجارة الإلكترونية</h3>
+                        <p>تطوير منصات تجارة إلكترونية متكاملة باستخدام Laravel وReact.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <a href="ecommerce-platforms.html" class="case-study-btn">عرض المشاريع</a>
+                    </div>
+                </div>
+                
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1415&q=80" alt="تطبيقات الجوال">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>تطبيقات الجوال</h3>
+                        <p>بناء تطبيقات جوال متعددة المنصات باستخدام React Native.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">React Native</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        <a href="#" onclick="showComingSoon(event)" class="case-study-btn">عرض المشاريع</a>
+                    </div>
+                </div>
+                
+                <div class="case-study-card">
+                    <div class="case-study-image">
+                        <img src="https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="عروض بوربوينت">
+                    </div>
+                    <div class="case-study-content">
+                        <h3>عروض بوربوينت احترافية</h3>
+                        <p>تصميم عروض تقديمية تفاعلية ومهنية تعزز عروضك واجتماعاتك.</p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">PowerPoint</span>
+                            <span class="tech-tag">تصميم جرافيك</span>
+                            <span class="tech-tag">الرسوم المتحركة</span>
+                        </div>
+                        <a href="#" onclick="showComingSoon(event)" class="case-study-btn">عرض العروض</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <footer class="footer-section">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <h3>G Mayne</h3>
+          <p>تمكين الشركات بأحدث حلول الذكاء الاصطناعي والتكنولوجيا المبتكرة.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-links">
+          <h3>روابط سريعة</h3>
+          <ul>
+            <li><a href="#about">من نحن</a></li>
+            <li><a href="#contact">اتصل بنا</a></li>
+            <li><a href="#technologies">التقنيات</a></li>
+            <li><a href="#case-studies">دراسات الحالة</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-contact">
+          <h3>معلومات الاتصال</h3>
+          <ul>
+            <li><i class="fas fa-envelope"></i> <a href="mailto:support@gmayne.com">Gmayne@gmail.com</a></li>
+            <li><i class="fas fa-phone-alt"></i> <a href="tel:+966123456789">+213660196512</a></li>
+            <li><i class="fas fa-map-marker-alt"></i> المسيلة، الجزائر</li>
+          </ul>
+        </div>
+
+        <div class="footer-about">
+          <h3>مهمتنا</h3>
+          <p>قيادة التحول الرقمي من خلال التقنيات المبتكرة مثل الذكاء الاصطناعي وتطبيقات الجوال والحلول السحابية لخلق تأثير دائم.</p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2025 G Mayne. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="العودة إلى الأعلى">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="assets/js/scrip.js"></script>
+  <script>
+    window.alert = function() {};
+
+  (function () {
+    'use strict';
+    var forms = document.querySelectorAll('.needs-validation');
+    Array.prototype.slice.call(forms).forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault();
+          event.stopPropagation();
+          Swal.fire({
+            icon: 'error',
+            title: 'خطأ في الإدخال',
+            text: 'يرجى ملء جميع الحقول بشكل صحيح.',
+            background: '#fff4f4',
+            iconColor: '#dc3545',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: false,
+            customClass: {
+              popup: 'animated-swal',
+              title: 'swal-title',
+              content: 'swal-text'
+            },
+            showClass: {
+              popup: 'animate__animated animate__bounceIn'
+            },
+            hideClass: {
+              popup: 'animate__animated animate__bounceOut'
+            }
+          });
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  })();
+
+  document.querySelectorAll('#name').forEach(input => {
+    input.addEventListener('input', function () {
+      this.value = this.value.replace(/[^A-Za-z\u0600-\u06FF\s\-']/g, '');
+    });
+  });
+
+  function showComingSoon(event) {
+    event.preventDefault();
+    Swal.fire({
+      icon: 'info',
+      title: 'أمور مثيرة قادمة! 😊',
+      text: 'هذا القسم تحت الإنشاء. كن على اطلاع لتجربة مذهلة!',
+      background: 'linear-gradient(135deg, #ffffff, #f8f9fa)',
+      iconColor: '#11A7A5',
+      timer: 3000,
+      timerProgressBar: true,
+      showConfirmButton: false,
+      position: 'center',
+      customClass: {
+        popup: 'animated-swal',
+        title: 'swal-title',
+        content: 'swal-text'
+      },
+      showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+      },
+      hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+      }
+    });
+  }
+
+  // Back to Top Button Functionality
+  const backToTopButton = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+      backToTopButton.classList.add('visible');
+    } else {
+      backToTopButton.classList.remove('visible');
+    }
+  });
+
+  backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+
+  // معالجة نموذج الاتصال باستخدام AJAX
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    if (!this.checkValidity()) {
+      e.stopPropagation();
+      this.classList.add('was-validated');
+      return;
+    }
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const originalText = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+    
+    const formData = new FormData(this);
+    
+    fetch('https://formspree.io/f/mzzanwoy', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`خطأ HTTP! الحالة: ${response.status} ${response.statusText}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (data.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'تم الإرسال بنجاح!',
+          text: 'تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا.',
+          background: '#f4f9ff',
+          iconColor: '#28a745',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          position: 'center',
+          customClass: {
+            popup: 'animated-swal',
+            title: 'swal-title',
+            content: 'swal-text'
+          },
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        });
+        document.getElementById('contactForm').reset();
+        document.getElementById('contactForm').classList.remove('was-validated');
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'خطأ',
+          text: data.error || 'فشل إرسال الرسالة. يرجى المحاولة مرة أخرى.',
+          background: '#fff4f4',
+          iconColor: '#dc3545',
+          timer: 3000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+          position: 'center',
+          customClass: {
+            popup: 'animated-swal',
+            title: 'swal-title',
+            content: 'swal-text'
+          },
+          showClass: {
+            popup: 'animate__animated animate__bounceIn'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__bounceOut'
+          }
+        });
+      }
+    })
+    .catch(error => {
+      console.error('خطأ في الإرسال:', error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'خطأ',
+        text: `حدث خطأ أثناء إرسال الرسالة: ${error.message}. يرجى المحاولة مرة أخرى أو التواصل مع الدعم.`,
+        background: '#fff4f4',
+        iconColor: '#dc3545',
+        timer: 5000,
+        timerProgressBar: true,
+        showConfirmButton: true,
+        confirmButtonText: 'موافق',
+        position: 'center',
+        customClass: {
+          popup: 'animated-swal',
+          title: 'swal-title',
+          content: 'swal-text',
+          confirmButton: 'swal-button'
+        },
+        showClass: {
+          popup: 'animate__animated animate__bounceIn'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__bounceOut'
+        }
+      });
+    })
+    .finally(() => {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    });
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Hero Swiper
+    const heroSwiper = new Swiper('.hero-swiper', {
+        direction: 'horizontal',
+        loop: true,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+        },
+        speed: 1000,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    // Initialize Testimonials Swiper if exists
+    const testimonialsSwiperEl = document.querySelector('.testimonials-swiper');
+    if (testimonialsSwiperEl) {
+        const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    }
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Mobile menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            // Update aria-expanded attribute
+            const isExpanded = menuToggle.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+    }
+
+    // Animate elements on scroll
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.feature-card, .section-title');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (elementPosition < screenPosition) {
+                element.style.animation = 'fadeInUp 1s ease forwards';
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    // Trigger once on load
+    animateOnScroll();
+
+    // Initialize Team Swiper if exists
+    const teamSwiperEl = document.querySelector('.team-swiper');
+    if (teamSwiperEl) {
+        const teamSwiper = new Swiper('.team-swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('aboutVideo');
+  const soundToggle = document.getElementById('soundToggle');
+  const soundIcon = soundToggle.querySelector('i');
+  const soundText = document.querySelector('.sound-text');
+  let isMuted = true;
+  
+  // Intersection Observer لتشغيل الفيديو عند الظهور وإيقافه عند الاختفاء
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // تشغيل الفيديو عندما يكون مرئياً
+        video.play().catch(error => {
+          console.log('Auto-play was prevented:', error);
+        });
+      } else {
+        // إيقاف الفيديو عندما لا يكون مرئياً
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 }); // عندما يكون 50% من الفيديو مرئياً
+  
+  // مراقبة عنصر الفيديو
+  videoObserver.observe(video);
+  
+  // تبديل الصوت عند النقر على الزر
+  soundToggle.addEventListener('click', function() {
+    isMuted = !isMuted;
+    video.muted = isMuted;
+    
+    if (isMuted) {
+      soundIcon.className = 'fas fa-volume-mute';
+      soundText.textContent = 'Sound Off';
+    } else {
+      soundIcon.className = 'fas fa-volume-up';
+      soundText.textContent = 'Sound On';
+    }
+  });
+  
+  // تشغيل/إيقاف الفيديو عند النقر عليه
+  video.addEventListener('click', function() {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Hero Swiper
+    const heroSwiper = new Swiper('.hero-swiper', {
+        direction: 'horizontal',
+        loop: true,
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+        },
+        speed: 1000,
+        effect: 'fade',
+        fadeEffect: {
+            crossFade: true
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+            dynamicBullets: true,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    // Initialize Testimonials Swiper if exists
+    const testimonialsSwiperEl = document.querySelector('.testimonials-swiper');
+    if (testimonialsSwiperEl) {
+        const testimonialsSwiper = new Swiper('.testimonials-swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    }
+
+    // Navbar scroll effect
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    }
+
+    // Mobile menu toggle functionality
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (menuToggle && navLinks) {
+        menuToggle.addEventListener('click', function() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            
+            // Update aria-expanded attribute
+            const isExpanded = menuToggle.classList.contains('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+
+    // Form submission
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('شكراً لك على رسالتك! سنتواصل معك قريباً.');
+            contactForm.reset();
+        });
+    }
+
+    // Animate elements on scroll
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('.feature-card, .section-title');
+        
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const screenPosition = window.innerHeight / 1.3;
+            
+            if (elementPosition < screenPosition) {
+                element.style.animation = 'fadeInUp 1s ease forwards';
+            }
+        });
+    };
+
+    window.addEventListener('scroll', animateOnScroll);
+    // Trigger once on load
+    animateOnScroll();
+
+    // Initialize Team Swiper if exists
+    const teamSwiperEl = document.querySelector('.team-swiper');
+    if (teamSwiperEl) {
+        const teamSwiper = new Swiper('.team-swiper', {
+            direction: 'horizontal',
+            loop: true,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            speed: 800,
+            slidesPerView: 1,
+            spaceBetween: 30,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    }
+
+    // إضافة تأثيرات للشريط المنزلق للفريق
+    const teamCards = document.querySelectorAll('.team-card');
+    teamCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // تحسين تجربة المستخدم للهواتف
+    if (window.innerWidth <= 768) {
+        // إضافة تأثير النقر للهواتف
+        const touchElements = document.querySelectorAll('.feature-card, .team-card, .btn-hero');
+        touchElements.forEach(element => {
+            element.style.cursor = 'pointer';
+            element.addEventListener('touchstart', function() {
+                this.style.transform = 'scale(0.98)';
+            });
+            
+            element.addEventListener('touchend', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    }
+});
+  </script>
+</body>
+</html>

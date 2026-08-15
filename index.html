@@ -695,7 +695,7 @@
         <p class="contact-cta-text">Let's work together 🤝</p>
         <div class="contact-form-card">
             <h3 class="contact-form-title"><i class="fa-solid fa-envelope"></i> Send me a message</h3>
-            <form id="contactForm" class="contact-form" action="https://formspree.io/f/mzzanwoy" method="POST" novalidate>
+            <form id="contactForm" class="contact-form" onsubmit="return gmHandleFormSubmit(event)" novalidate>
                 <div class="form-row-2">
                     <div class="form-group">
                         <label for="cf-name">Your Name</label>

@@ -5,9 +5,9 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 8, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 9, dockIcon: ic(
                 'folder-open') },
-        { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 4, dockIcon: ic('globe') },
+        { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 5, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
     ];
 
@@ -24,6 +24,9 @@
         { title: 'CinePulse — Movies & TV Shows', client: 'CinePulse', year: 2026, cat: 'webapp', color: '#e50914',
             icon: ic('film'), url: 'https://momayne10-ship-it.github.io/-CinePulse/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/-CinePulse/' },
+        { title: 'Golden Taste — مطعم فاخر', client: 'Golden Taste', year: 2026, cat: 'webapp', color: '#d4a017',
+            icon: ic('utensils'), url: 'https://momayne10-ship-it.github.io/Golden-Taste/',
+            image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Golden-Taste/' },
         { title: 'Medisys — Medical System', client: 'Medisys', year: 2025, cat: 'desktop', color: '#1a8a6a',
             icon: ic('laptop-medical'),
             image: 'MD1.png',

@@ -5,9 +5,9 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 10, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 11, dockIcon: ic(
                 'folder-open') },
-        { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 6, dockIcon: ic('globe') },
+        { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 7, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
     ];
 
@@ -30,6 +30,9 @@
         { title: 'Sweet Delight — حلويات فاخرة', client: 'Sweet Delight', year: 2026, cat: 'webapp', color: '#e91e8c',
             icon: ic('cake-candles'), url: 'https://momayne10-ship-it.github.io/Sweet-Delight/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Sweet-Delight/' },
+        { title: 'Black Brew — Specialty Coffee', client: 'Specialty Coffee', year: 2026, cat: 'webapp', color: '#3d2314',
+            icon: ic('mug-hot'), url: 'https://momayne10-ship-it.github.io/Specialty-Coffee/',
+            image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Specialty-Coffee/' },
         { title: 'Medisys — Medical System', client: 'Medisys', year: 2025, cat: 'desktop', color: '#1a8a6a',
             icon: ic('laptop-medical'),
             image: 'MD1.png',

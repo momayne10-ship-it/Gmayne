@@ -10,7 +10,7 @@
         { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 5, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
-        { id: 'mpss', name: 'MPSS', icon: ic('layers'), color: '#8b5cf6', badge: 1, dockIcon: ic('layers') },
+        { id: 'mpss', name: 'MPSS', icon: ic('layer-group'), color: '#8b5cf6', badge: 1, dockIcon: ic('layer-group') },
     ];
 
     const PROJECTS = [

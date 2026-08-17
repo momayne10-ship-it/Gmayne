@@ -668,7 +668,16 @@ const conversations = [
             'owais': "**Amin Owais** — YouTube edits (Vol. 1 & Vol. 2, 2025). Full video editing for the creator: pacing, cuts, and retention-focused storytelling.",
             'thumbnail': "**YouTube Thumbnail Design** (2024) — click-optimised thumbnails for various creators, built to boost CTR.",
             'creative agency': "**Creative Agency Branding** — a full brand package for Studio X (2025).",
-            'hamza': "**Edit English** — an editing project for client Hamza (2025)."
+            'hamza': "**Edit English** — an editing project for client Hamza (2025).",
+            'clink': "**Clink Medical** — Premium Healthcare Website (2026). A modern, professional medical website built for Clink Medical — responsive, clean, and conversion-focused. [Live](https://momayne10-ship-it.github.io/Medical_website/)",
+            'medical': "**Clink Medical** — Premium Healthcare Website (2026). A modern, professional medical website built for Clink Medical. [Live](https://momayne10-ship-it.github.io/Medical_website/)",
+            'cinepulse': "**CinePulse** — Movies & TV Shows (2026). A feature-rich platform for browsing movies and TV shows with a dark, cinematic UI. [Live](https://momayne10-ship-it.github.io/-CinePulse/)",
+            'golden taste': "**Golden Taste** — Luxury Restaurant Website (2026). A premium restaurant site with an elegant, golden-themed design. [Live](https://momayne10-ship-it.github.io/Golden-Taste/)",
+            'sweet delight': "**Sweet Delight** — Bakery Website (2026). A warm, inviting bakery site with a pink-accented design. [Live](https://momayne10-ship-it.github.io/Sweet-Delight/)",
+            'black brew': "**Black Brew** — Specialty Coffee Website (2026). A bold, dark coffee site with a premium artisanal feel. [Live](https://momayne10-ship-it.github.io/Specialty-Coffee/)",
+            'specialty coffee': "**Black Brew** — Specialty Coffee Website (2026). A bold, dark coffee site with a premium artisanal feel. [Live](https://momayne10-ship-it.github.io/Specialty-Coffee/)",
+            'medisys': "**MediSys** — Hospital Management System (MPSS). A cross-platform hospital management desktop app built with Python.",
+            'ain lexicon': "**Ain Lexicon** — English-Arabic Dictionary (Web App). An interactive dictionary web app with search, word definitions, and translation features."
         };
 
         var intents = [{
@@ -725,7 +734,7 @@ const conversations = [
             keys: ['services', 'service', 'what do you do', 'what can you build', 'what can he build', 'offer',
                 'provide', 'help with', 'what do you offer', 'what does he do'
             ],
-            resp: "Gmayne can build almost anything digital. Core services:\n\n• **Websites & Web Apps** — landing pages to full-scale platforms.\n• **Mobile & App UI Design** — modern, conversion-focused interfaces.\n• **Brand Identity** — logos and complete visual systems.\n• **Social Media Design** — scroll-stopping visuals.\n• **Video Editing & Videography** — YouTube edits, thumbnails, and content.\n• **AI-Powered Solutions** — intelligent apps, automation, smart systems.\n\nIf you can describe it, he can probably build it. What are you working on?",
+            resp: "Gmayne can build almost anything digital. Core services:\n\n• **Websites & Web Apps** — landing pages to full-scale platforms (see **Clink Medical**, **CinePulse**, **Ain Lexicon**).\n• **Mobile & App UI Design** — modern, conversion-focused interfaces.\n• **Brand Identity** — logos and complete visual systems.\n• **Social Media Design** — scroll-stopping visuals.\n• **Video Editing & Videography** — YouTube edits, thumbnails, and content.\n• **AI-Powered Solutions** — intelligent apps, automation, smart systems.\n• **Hospital & Business Systems** — desktop & MPSS apps (**MediSys**, custom CRMs).\n\nIf you can describe it, he can probably build it. What are you working on?",
             deeper: "Beyond the core list, Gmayne specialises in **AI solutions** and **intelligent business systems** (CRMs, platforms, automation) — the kinds of projects that don't just look good, they save teams real hours.",
             suggests: ['Can you build my project?', 'How much does a project cost?', 'Show your projects']
         }, {
@@ -742,8 +751,8 @@ const conversations = [
             keys: ['projects', 'project', 'portfolio', 'showcase', 'designs', 'clients', 'previous work',
                 'your work', 'your projects', 'examples', 'samples', 'built before', 'past work'
             ],
-            resp: "Gmayne has shipped **25+ projects** across design, development, and media. Highlights:\n\n• **Upower & AccentFlow** — mobile app UI design.\n• **RawLearn** — English school branding.\n• **MIDI Group** — brand identity.\n• **Alanoud Beauty & Jannah Modesty** — skincare & fashion branding.\n• **Naila Hospital** — social media design.\n• **Amin Owais** — YouTube video edits.\n• **FitLife** — fitness app UI.\n\nBrowse the full showcase in the **Work OS** section above — and ask me about any of them!",
-            deeper: "Ask me about a specific one — say **RawLearn**, **Upower**, **MIDI**, **Naila Hospital**, **Alanoud**, **Amin Owais**, or **FitLife** — and I'll give you the details. 😉",
+            resp: "Gmayne has shipped **25+ projects** across design, development, and media. Highlights:\n\n• **[Clink Medical](https://momayne10-ship-it.github.io/Medical_website/)** — Premium healthcare website.\n• **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)** — Movies & TV Shows platform.\n• **[Golden Taste](https://momayne10-ship-it.github.io/Golden-Taste/)** — Luxury restaurant site.\n• **[Sweet Delight](https://momayne10-ship-it.github.io/Sweet-Delight/)** — Bakery website.\n• **[Black Brew](https://momayne10-ship-it.github.io/Specialty-Coffee/)** — Specialty coffee site.\n• **MediSys** — Hospital management system.\n• **Ain Lexicon** — English-Arabic dictionary app.\n\nBrowse the full showcase in the **Work OS** section above — and ask me about any of them!",
+            deeper: "Ask me about a specific one — say **Clink Medical**, **CinePulse**, **MediSys**, **Ain Lexicon**, or any project — and I'll give you the details. 😉",
             suggests: ['Tell me about yourself', 'What services do you provide?', 'What technologies do you use?']
         }, {
             id: 'pricing',
@@ -897,6 +906,30 @@ const conversations = [
             return false;
         }
 
+        function detectClientIntent(q) {
+            var need = null;
+            if (/i need|looking for|want to build|want to make|can you build|can you make|build me|make me|create me|i want/i.test(q)) {
+                if (/website|site|landing|page|web app|webapp|platform/i.test(q)) need = 'web';
+                else if (/mobile|app|android|ios/i.test(q)) need = 'mobile';
+                else if (/ai|chatbot|assistant|automation|intelligent/i.test(q)) need = 'ai';
+                else if (/brand|logo|identity|visual/i.test(q)) need = 'brand';
+                else if (/crm|erp|inventory|booking|system|management/i.test(q)) need = 'business';
+                else need = 'general';
+            }
+            if (need) {
+                var links = {
+                    web: "Check out his web projects — **[MediSys](https://momayne10-ship-it.github.io/Medical_website/)**, **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)**, and more in the **Work OS** section above.",
+                    mobile: "His app UI work includes **Upower**, **AccentFlow**, and **FitLife** — modern, conversion-focused interfaces.",
+                    ai: "Gmayne specialises in **AI-powered solutions** — chatbots, smart automation, and intelligent systems. His Master's in Networks & ICT backs this up.",
+                    brand: "He's built identities for **RawLearn**, **MIDI Group**, **Alanoud Beauty**, and **Jannah Modesty** — logos, colour systems, full visual languages.",
+                    business: "He builds **CRMs, inventory systems, booking tools, and custom platforms** — designed to automate busywork and scale.",
+                    general: "Gmayne can build almost anything digital — websites, apps, AI systems, brand identity, you name it."
+                };
+                return { resp: links[need] + "\n\nTell me more about what you're building and I can suggest the best next step.", suggests: ['Can you build my project?', 'How much does a project cost?', 'How can I contact you?'] };
+            }
+            return null;
+        }
+
         function match(q) {
             var best = null,
                 bestScore = 0;
@@ -922,6 +955,8 @@ const conversations = [
 
         function think(text) {
             var q = normalize(text);
+            var ci = detectClientIntent(q);
+            if (ci) return ci;
             var pr = projectMatch(q);
             if (pr) {
                 return { resp: pr + "\n\nWant me to tell you about Gmayne's other projects?", suggests: [
@@ -956,7 +991,11 @@ const conversations = [
 
         function timeNow() { var d = new Date(); return pad(d.getHours()) + ':' + pad(d.getMinutes()); }
 
-        function inline(s) { return s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>'); }
+        function inline(s) {
+            return s
+                .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" style="color:#10b981;text-decoration:underline">$1</a>');
+        }
 
         function renderMd(md) {
             var lines = md.split('\n');

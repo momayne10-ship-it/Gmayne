@@ -7,9 +7,9 @@
     const FOLDERS = [
         { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 11, dockIcon: ic(
                 'folder-open') },
-        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 6, dockIcon: ic('earth') },
+        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 5, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
-        { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 3, dockIcon: ic('desktop') },
+        { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
         { id: 'mpss', name: 'MPSS', icon: ic('layers'), color: '#8b5cf6', badge: 1, dockIcon: ic('layers') },
     ];
 
@@ -17,7 +17,7 @@
         { title: 'Clink Medical — Premium Healthcare', client: 'Clink Medical', year: 2026, cat: 'website', color: '#1a8a6a',
             icon: ic('hospital'), url: 'https://momayne10-ship-it.github.io/Medical_website/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Medical_website/' },
-        { title: 'MediSys — نظام إدارة العيادات', client: 'MediSys', year: 2026, cat: 'website', color: '#10b981',
+        { title: 'MediSys — نظام إدارة العيادات', client: 'MediSys', year: 2026, cat: 'mpss', color: '#10b981',
             icon: ic('hospital'), url: 'https://momayne10-ship-it.github.io/MediSys/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/MediSys/' },
         { title: 'CinePulse — Movies & TV Shows', client: 'CinePulse', year: 2026, cat: 'website', color: '#e50914',
@@ -35,7 +35,7 @@
         { title: 'Ain Lexicon — معجم العين', client: 'Ain Lexicon', year: 2026, cat: 'webapp', color: '#2ecc71',
             icon: ic('book-open'), url: 'https://momayne10-ship-it.github.io/Ain-Lexicon/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Ain-Lexicon/' },
-        { title: 'Medisys — Medical System', client: 'Medisys', year: 2025, cat: 'mpss', color: '#1a8a6a',
+        { title: 'Medisys — Medical System', client: 'Medisys', year: 2025, cat: 'desktop', color: '#1a8a6a',
             icon: ic('laptop-medical'),
             image: 'MD1.png',
             gallery: ['MD1.png','MD2.png','MD3.png','MD4.png','MD5.png','MD6.png','MD7.png'] },

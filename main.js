@@ -5,18 +5,15 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 12, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 11, dockIcon: ic(
                 'folder-open') },
-        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 6, dockIcon: ic('earth') },
+        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 5, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
         { id: 'mpss', name: 'MPSS', icon: ic('layer-group'), color: '#8b5cf6', badge: 1, dockIcon: ic('layer-group') },
     ];
 
     const PROJECTS = [
-        { title: 'Clink Medical — Premium Healthcare', client: 'Clink Medical', year: 2026, cat: 'website', color: '#1a8a6a',
-            icon: ic('hospital'), url: 'https://momayne10-ship-it.github.io/Medical_website/',
-            image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/Medical_website/' },
         { title: 'CinePulse — Movies & TV Shows', client: 'CinePulse', year: 2026, cat: 'website', color: '#e50914',
             icon: ic('film'), url: 'https://momayne10-ship-it.github.io/-CinePulse/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/-CinePulse/' },
@@ -669,8 +666,6 @@ const conversations = [
             'thumbnail': "**YouTube Thumbnail Design** (2024) — click-optimised thumbnails for various creators, built to boost CTR.",
             'creative agency': "**Creative Agency Branding** — a full brand package for Studio X (2025).",
             'hamza': "**Edit English** — an editing project for client Hamza (2025).",
-            'clink': "**Clink Medical** — Premium Healthcare Website (2026). A modern, professional medical website built for Clink Medical — responsive, clean, and conversion-focused. [Live](https://momayne10-ship-it.github.io/Medical_website/)",
-            'medical': "**Clink Medical** — Premium Healthcare Website (2026). A modern, professional medical website built for Clink Medical. [Live](https://momayne10-ship-it.github.io/Medical_website/)",
             'cinepulse': "**CinePulse** — Movies & TV Shows (2026). A feature-rich platform for browsing movies and TV shows with a dark, cinematic UI. [Live](https://momayne10-ship-it.github.io/-CinePulse/)",
             'golden taste': "**Golden Taste** — Luxury Restaurant Website (2026). A premium restaurant site with an elegant, golden-themed design. [Live](https://momayne10-ship-it.github.io/Golden-Taste/)",
             'sweet delight': "**Sweet Delight** — Bakery Website (2026). A warm, inviting bakery site with a pink-accented design. [Live](https://momayne10-ship-it.github.io/Sweet-Delight/)",
@@ -734,7 +729,7 @@ const conversations = [
             keys: ['services', 'service', 'what do you do', 'what can you build', 'what can he build', 'offer',
                 'provide', 'help with', 'what do you offer', 'what does he do'
             ],
-            resp: "Gmayne can build almost anything digital. Core services:\n\n• **Websites & Web Apps** — landing pages to full-scale platforms (see **Clink Medical**, **CinePulse**, **Ain Lexicon**).\n• **Mobile & App UI Design** — modern, conversion-focused interfaces.\n• **Brand Identity** — logos and complete visual systems.\n• **Social Media Design** — scroll-stopping visuals.\n• **Video Editing & Videography** — YouTube edits, thumbnails, and content.\n• **AI-Powered Solutions** — intelligent apps, automation, smart systems.\n• **Hospital & Business Systems** — desktop & MPSS apps (**MediSys**, custom CRMs).\n\nIf you can describe it, he can probably build it. What are you working on?",
+            resp: "Gmayne can build almost anything digital. Core services:\n\n• **Websites & Web Apps** — landing pages to full-scale platforms (see **CinePulse**, **Ain Lexicon**).\n• **Mobile & App UI Design** — modern, conversion-focused interfaces.\n• **Brand Identity** — logos and complete visual systems.\n• **Social Media Design** — scroll-stopping visuals.\n• **Video Editing & Videography** — YouTube edits, thumbnails, and content.\n• **AI-Powered Solutions** — intelligent apps, automation, smart systems.\n• **Hospital & Business Systems** — desktop & MPSS apps (**MediSys**, custom CRMs).\n\nIf you can describe it, he can probably build it. What are you working on?",
             deeper: "Beyond the core list, Gmayne specialises in **AI solutions** and **intelligent business systems** (CRMs, platforms, automation) — the kinds of projects that don't just look good, they save teams real hours.",
             suggests: ['Can you build my project?', 'How much does a project cost?', 'Show your projects']
         }, {
@@ -751,8 +746,8 @@ const conversations = [
             keys: ['projects', 'project', 'portfolio', 'showcase', 'designs', 'clients', 'previous work',
                 'your work', 'your projects', 'examples', 'samples', 'built before', 'past work'
             ],
-            resp: "Gmayne has shipped **25+ projects** across design, development, and media. Highlights:\n\n• **[Clink Medical](https://momayne10-ship-it.github.io/Medical_website/)** — Premium healthcare website.\n• **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)** — Movies & TV Shows platform.\n• **[Golden Taste](https://momayne10-ship-it.github.io/Golden-Taste/)** — Luxury restaurant site.\n• **[Sweet Delight](https://momayne10-ship-it.github.io/Sweet-Delight/)** — Bakery website.\n• **[Black Brew](https://momayne10-ship-it.github.io/Specialty-Coffee/)** — Specialty coffee site.\n• **MediSys** — Hospital management system.\n• **Ain Lexicon** — English-Arabic dictionary app.\n\nBrowse the full showcase in the **Work OS** section above — and ask me about any of them!",
-            deeper: "Ask me about a specific one — say **Clink Medical**, **CinePulse**, **MediSys**, **Ain Lexicon**, or any project — and I'll give you the details. 😉",
+            resp: "Gmayne has shipped **25+ projects** across design, development, and media. Highlights:\n\n• **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)** — Movies & TV Shows platform.\n• **[Golden Taste](https://momayne10-ship-it.github.io/Golden-Taste/)** — Luxury restaurant site.\n• **[Sweet Delight](https://momayne10-ship-it.github.io/Sweet-Delight/)** — Bakery website.\n• **[Black Brew](https://momayne10-ship-it.github.io/Specialty-Coffee/)** — Specialty coffee site.\n• **MediSys** — Hospital management system.\n• **Ain Lexicon** — English-Arabic dictionary app.\n\nBrowse the full showcase in the **Work OS** section above — and ask me about any of them!",
+            deeper: "Ask me about a specific one — say **CinePulse**, **MediSys**, **Ain Lexicon**, or any project — and I'll give you the details. 😉",
             suggests: ['Tell me about yourself', 'What services do you provide?', 'What technologies do you use?']
         }, {
             id: 'pricing',
@@ -918,7 +913,7 @@ const conversations = [
             }
             if (need) {
                 var links = {
-                    web: "Check out his web projects — **[MediSys](https://momayne10-ship-it.github.io/Medical_website/)**, **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)**, and more in the **Work OS** section above.",
+                    web: "Check out his web projects — **[MediSys](https://momayne10-ship-it.github.io/MediSys/)**, **[CinePulse](https://momayne10-ship-it.github.io/-CinePulse/)**, and more in the **Work OS** section above.",
                     mobile: "His app UI work includes **Upower**, **AccentFlow**, and **FitLife** — modern, conversion-focused interfaces.",
                     ai: "Gmayne specialises in **AI-powered solutions** — chatbots, smart automation, and intelligent systems. His Master's in Networks & ICT backs this up.",
                     brand: "He's built identities for **RawLearn**, **MIDI Group**, **Alanoud Beauty**, and **Jannah Modesty** — logos, colour systems, full visual languages.",

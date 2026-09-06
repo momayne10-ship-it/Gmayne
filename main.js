@@ -5,9 +5,9 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 12, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 13, dockIcon: ic(
                 'folder-open') },
-        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 6, dockIcon: ic('earth') },
+        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 7, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
         { id: 'mpss', name: 'MPSS', icon: ic('layer-group'), color: '#8b5cf6', badge: 1, dockIcon: ic('layer-group') },
@@ -54,6 +54,9 @@
             icon: ic('children'),
             image: 'NR1.png',
             gallery: ['NR1.png','NR2.png','NR3.png','NR4.png','NR5.png','NR6.png','NR7.png'] },
+        { title: 'Astronomia Luxe — 3D Luxury Watch', client: 'Astronomia Luxe', year: 2026, cat: 'website', color: '#C9A05C',
+            icon: ic('clock'), url: 'https://astronomia-luxe-kohl.vercel.app/',
+            image: 'astronomia-preview.png' },
     ];
 
     let currentCat = 'all';

@@ -673,6 +673,8 @@ const conversations = [
             'creative agency': "**Creative Agency Branding** — a full brand package for Studio X (2025).",
             'hamza': "**Edit English** — an editing project for client Hamza (2025).",
             'cinepulse': "**CinePulse** — Movies & TV Shows (2026). A feature-rich platform for browsing movies and TV shows with a dark, cinematic UI. [Live](https://momayne10-ship-it.github.io/-CinePulse/)",
+            'iron man': "**Iron Man** — 3D Interactive Website (2026). An immersive 3D experience featuring the iconic Iron Man character with stunning visual effects and interactive elements. [Live](https://iron-man-puce.vercel.app/)",
+            'ironman': "**Iron Man** — 3D Interactive Website (2026). An immersive 3D experience featuring the iconic Iron Man character with stunning visual effects and interactive elements. [Live](https://iron-man-puce.vercel.app/)",
             'golden taste': "**Golden Taste** — Luxury Restaurant Website (2026). A premium restaurant site with an elegant, golden-themed design. [Live](https://momayne10-ship-it.github.io/Golden-Taste/)",
             'sweet delight': "**Sweet Delight** — Bakery Website (2026). A warm, inviting bakery site with a pink-accented design. [Live](https://momayne10-ship-it.github.io/Sweet-Delight/)",
             'black brew': "**Black Brew** — Specialty Coffee Website (2026). A bold, dark coffee site with a premium artisanal feel. [Live](https://momayne10-ship-it.github.io/Specialty-Coffee/)",

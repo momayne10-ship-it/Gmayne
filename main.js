@@ -5,15 +5,18 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 12, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 13, dockIcon: ic(
                 'folder-open') },
-        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 6, dockIcon: ic('earth') },
+        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 7, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
         { id: 'mpss', name: 'MPSS', icon: ic('layer-group'), color: '#8b5cf6', badge: 1, dockIcon: ic('layer-group') },
     ];
 
     const PROJECTS = [
+        { title: 'Iron Man — 3D Interactive Website', client: 'Iron Man', year: 2026, cat: 'website', color: '#e50914',
+            icon: ic('robot'), url: 'https://iron-man-puce.vercel.app/',
+            image: 'https://image.thum.io/get/width/400/crop/600/https://iron-man-puce.vercel.app/' },
         { title: 'CinePulse — Movies & TV Shows', client: 'CinePulse', year: 2026, cat: 'website', color: '#e50914',
             icon: ic('film'), url: 'https://momayne10-ship-it.github.io/-CinePulse/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/-CinePulse/' },

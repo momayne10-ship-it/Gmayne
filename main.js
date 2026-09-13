@@ -5,9 +5,9 @@
     const ic = (c) => `<i class="fa-solid fa-${c}"></i>`;
 
     const FOLDERS = [
-        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 13, dockIcon: ic(
+        { id: 'all', name: 'All Projects', icon: ic('folder-open'), color: '#c9a53a', badge: 14, dockIcon: ic(
                 'folder-open') },
-        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 7, dockIcon: ic('earth') },
+        { id: 'website', name: 'Web Sites', icon: ic('earth'), color: '#0ea5e9', badge: 8, dockIcon: ic('earth') },
         { id: 'webapp', name: 'Web Apps', icon: ic('globe'), color: '#2ecc71', badge: 1, dockIcon: ic('globe') },
         { id: 'desktop', name: 'Desktop Apps', icon: ic('desktop'), color: '#3a6bd6', badge: 4, dockIcon: ic('desktop') },
         { id: 'mpss', name: 'MPSS', icon: ic('layer-group'), color: '#8b5cf6', badge: 1, dockIcon: ic('layer-group') },
@@ -17,6 +17,9 @@
         { title: 'Iron Man — 3D Interactive Website', client: 'Iron Man', year: 2026, cat: 'website', color: '#e50914',
             icon: ic('robot'), url: 'https://iron-man-puce.vercel.app/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://iron-man-puce.vercel.app/' },
+        { title: 'Burger House — مطعم برغر فاخر', client: 'Burger House', year: 2026, cat: 'website', color: '#ff4d00',
+            icon: ic('burger'), url: 'https://burger-house-plum.vercel.app/',
+            image: 'https://image.thum.io/get/width/400/crop/600/https://burger-house-plum.vercel.app/' },
         { title: 'CinePulse — Movies & TV Shows', client: 'CinePulse', year: 2026, cat: 'website', color: '#e50914',
             icon: ic('film'), url: 'https://momayne10-ship-it.github.io/-CinePulse/',
             image: 'https://image.thum.io/get/width/400/crop/600/https://momayne10-ship-it.github.io/-CinePulse/' },
@@ -675,6 +678,8 @@ const conversations = [
             'cinepulse': "**CinePulse** — Movies & TV Shows (2026). A feature-rich platform for browsing movies and TV shows with a dark, cinematic UI. [Live](https://momayne10-ship-it.github.io/-CinePulse/)",
             'iron man': "**Iron Man** — 3D Interactive Website (2026). An immersive 3D experience featuring the iconic Iron Man character with stunning visual effects and interactive elements. [Live](https://iron-man-puce.vercel.app/)",
             'ironman': "**Iron Man** — 3D Interactive Website (2026). An immersive 3D experience featuring the iconic Iron Man character with stunning visual effects and interactive elements. [Live](https://iron-man-puce.vercel.app/)",
+            'burger house': "**Burger House** — Luxury Burger Restaurant Website (2026). A premium restaurant site with an elegant, orange-themed design featuring scroll-driven video hero, menu section, and contact links. [Live](https://burger-house-plum.vercel.app/)",
+            'burger': "**Burger House** — Luxury Burger Restaurant Website (2026). A premium restaurant site with an elegant, orange-themed design featuring scroll-driven video hero, menu section, and contact links. [Live](https://burger-house-plum.vercel.app/)",
             'golden taste': "**Golden Taste** — Luxury Restaurant Website (2026). A premium restaurant site with an elegant, golden-themed design. [Live](https://momayne10-ship-it.github.io/Golden-Taste/)",
             'sweet delight': "**Sweet Delight** — Bakery Website (2026). A warm, inviting bakery site with a pink-accented design. [Live](https://momayne10-ship-it.github.io/Sweet-Delight/)",
             'black brew': "**Black Brew** — Specialty Coffee Website (2026). A bold, dark coffee site with a premium artisanal feel. [Live](https://momayne10-ship-it.github.io/Specialty-Coffee/)",
